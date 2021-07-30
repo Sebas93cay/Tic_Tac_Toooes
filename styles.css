@@ -1,0 +1,16 @@
+*{
+	/*border: 1px solid gray;*/
+	box-sizing: border-box;
+}
+
+h1{
+	text-align: center;
+}
+
+.container{
+	height: 100vh;
+	padding: 50px 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

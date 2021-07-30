@@ -1,0 +1,28 @@
+
+
+.options{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	border: 3px solid #AAA;
+	padding: 10px;
+	margin-bottom: 50px;
+}
+.options input[type="number"]{
+	width: 50px;
+	text-align: center;
+	margin-right: 50px;
+	margin-left: 6px;
+}
+
+.options button{
+	height: 30px;
+	width: 80px;
+}
+
+.options label.input-off{
+	color: #999;
+}
+
+
