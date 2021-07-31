@@ -1,5 +1,5 @@
 :root {
-	--cell-size: 150px;
+	--cell-size: 100px;
 	--mark-size: calc(var(--cell-size) * .9);
 }
 
@@ -7,16 +7,18 @@
 	border: 3px solid black;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
-	width: 80%;
+	max-width: 90vw;
 }
 
 .board .cell{
-	width: 100%;
+	width: var(--cell-size);
 	height: var(--cell-size);
 	border: 1px solid #AAA;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	max-width: var(--cell-size);
+	/*min-width: var(--cell-size);*/
 }
 
 .cell.x, .cell.o{
