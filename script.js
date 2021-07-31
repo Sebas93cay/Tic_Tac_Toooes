@@ -8,7 +8,7 @@ const height_input_label = document.querySelector('[for="height-input"]');
 const width_input = document.querySelector('#width-input');
 const height_input = document.querySelector('#height-input');
 const container = document.querySelector('.container');
-
+let line_lenght = 0;
 
 main();
 
@@ -42,13 +42,13 @@ function freeWidhtHeight(){
 }
 
 function startGame(){
-	let line_lenght = line_input.value;
+	line_lenght = line_input.value;
 	let board_height_cells = height_input.value;
 	let board_width_cells = document.getElementById('width-input').value;
-	insertCells(line_lenght, board_width_cells, board_height_cells);
+	insertCells(board_width_cells, board_height_cells);
 }
 
-function insertCells(line_lenght, board_width_cells, board_height_cells){
+function insertCells(board_width_cells, board_height_cells){
 	let expected_cell_width = 0
 	if (line_lenght == 3){
 		expected_cell_width = 150;
@@ -86,11 +86,11 @@ function insertCells(line_lenght, board_width_cells, board_height_cells){
 function windowResized(){
 	let expected_cell_width = 0;
 	let cell_widht = 0;
-	let line_lenght = line_input.value;
-	let board_width_cells = width_input.value;
 	if (line_lenght == 5){
 		expected_cell_width = 50;
+		board_width_cells = width_input.value;
 	}else{
+		board_width_cells = line_lenght;
 		expected_cell_width = 150;
 	}
 	let board_width = container.clientWidth * 0.9 - 4;
