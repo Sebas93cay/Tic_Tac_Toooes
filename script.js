@@ -19,6 +19,7 @@ function main(){
 	line_input.addEventListener('change', freeWidhtHeight);
 	playButton.addEventListener('click', startGame);
 	window.onresize = windowResized;
+	startGame();
 }
 
 /**
@@ -41,13 +42,22 @@ function freeWidhtHeight(){
 	}
 }
 
+/**
+ * startGame - sets the cells in the board according to the options
+ */
 function startGame(){
 	line_lenght = line_input.value;
 	let board_height_cells = height_input.value;
-	let board_width_cells = document.getElementById('width-input').value;
+	let board_width_cells = width_input.value;
 	insertCells(board_width_cells, board_height_cells);
+	let allCells = document.querySelectorAll('.cell');
+	allCells.forEach(cell => {
+		cell.addEventListener('click', cellClick, {once: true});
+	})
 }
-
+/**
+ * insertCells - insert the cells in the board
+ */
 function insertCells(board_width_cells, board_height_cells){
 	let expected_cell_width = 0
 	if (line_lenght == 3){
@@ -70,8 +80,7 @@ function insertCells(board_width_cells, board_height_cells){
 		theCell.classList.add("cell");
 		fragmento.appendChild(theCell);
 	}
-	let board_width = container.clientWidth * 0.9 - 4;
-	console.log(`board widht: ${board_width}`);
+	let board_width = container.clientWidth * 0.95 - 4;
 	if (expected_cell_width * board_width_cells > board_width){
 		let cell_widht = board_width / board_width_cells;
 		root.style.setProperty('--cell-size', `${cell_widht}px`);
@@ -93,8 +102,7 @@ function windowResized(){
 		board_width_cells = line_lenght;
 		expected_cell_width = 150;
 	}
-	let board_width = container.clientWidth * 0.9 - 4;
-	console.log(`board widht: ${board_width}`);
+	let board_width = container.clientWidth * 0.95 - 4;
 	if (expected_cell_width * board_width_cells > board_width){
 		cell_widht = board_width / board_width_cells;
 	}else{
