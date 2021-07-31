@@ -8,7 +8,10 @@ const height_input_label = document.querySelector('[for="height-input"]');
 const width_input = document.querySelector('#width-input');
 const height_input = document.querySelector('#height-input');
 const container = document.querySelector('.container');
+let allCells;
 let line_lenght = 0;
+let board_height_cells;
+let board_width_cells;
 
 main();
 
@@ -47,10 +50,10 @@ function freeWidhtHeight(){
  */
 function startGame(){
 	line_lenght = line_input.value;
-	let board_height_cells = height_input.value;
-	let board_width_cells = width_input.value;
-	insertCells(board_width_cells, board_height_cells);
-	let allCells = document.querySelectorAll('.cell');
+	board_height_cells = height_input.value;
+	board_width_cells = width_input.value;
+	insertCells();
+	allCells = document.querySelectorAll('.cell');
 	allCells.forEach(cell => {
 		cell.addEventListener('click', cellClick, {once: true});
 	})
@@ -58,7 +61,7 @@ function startGame(){
 /**
  * insertCells - insert the cells in the board
  */
-function insertCells(board_width_cells, board_height_cells){
+function insertCells(){
 	let expected_cell_width = 0
 	if (line_lenght == 3){
 		expected_cell_width = 150;
@@ -110,6 +113,20 @@ function windowResized(){
 	}
 	root.style.setProperty('--cell-size', `${cell_widht}px`);
 }
-function cellClick(){
-	console.log("click in cell");
+function cellClick(e){
+	let cell = e.target;
+	let currentTurn;
+	if (board.classList.contains('x'))
+		currentTurn = 'x';
+	else
+		currentTurn = 'o';
+	cell.classList.add(currentTurn);
+	console.log(board_width_cells);
+	//if (checkForWin(currentTurn)){
+
+	//}
+}
+
+function checkForWin(cell, currentTurn){
+
 }
