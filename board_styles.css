@@ -7,13 +7,13 @@
 	border: 3px solid black;
 	display: grid;
 	grid-template-columns: repeat(3, auto);
-	width: auto;
+	width: 80%;
 }
 
 .board .cell{
-	width: var(--cell-size);
+	width: 100%;
 	height: var(--cell-size);
-	border: 2px solid black;
+	border: 1px solid #AAA;
 	display: flex;
 	justify-content: center;
 	align-items: center;
