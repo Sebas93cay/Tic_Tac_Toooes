@@ -1,20 +1,19 @@
-*{
-	/*border: 1px solid gray;*/
-	box-sizing: border-box;
-	overflow-x: hidden;
+* {
+    /*border: 1px solid gray;*/
+    box-sizing: border-box;
 }
 
-h1{
-	text-align: center;
+h1 {
+    text-align: center;
 }
 
-.container{
-	height: 100%;
-	width: 100%;
-	padding: 50px 100px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 0;
-	overflow-x: hidden;
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    overflow-x: hidden;
 }
