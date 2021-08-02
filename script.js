@@ -14,6 +14,7 @@ let allCells;
 let line_lenght = 0;
 let board_height_cells;
 let board_width_cells;
+let min_cell_size = 25;
 
 main();
 
@@ -62,6 +63,7 @@ function startGame() {
 		});
 	})
 }
+
 /**
  * insertCells - insert the cells in the board
  */
@@ -89,8 +91,8 @@ function insertCells() {
 	}
 	let board_width = container.clientWidth * 0.95 - 4;
 	if (expected_cell_width * board_width_cells > board_width) {
-		let cell_widht = board_width / board_width_cells;
-		root.style.setProperty('--cell-size', `${cell_widht}px`);
+		//let cell_widht = board_width / board_width_cells;
+		root.style.setProperty('--cell-size', `${min_cell_size}px`);
 		//root.style.setProperty('--mark-size', `${cell_widht * 0.9}px`);
 	}
 	board.appendChild(fragmento);
@@ -111,7 +113,8 @@ function windowResized() {
 	}
 	let board_width = container.clientWidth * 0.95 - 4;
 	if (expected_cell_width * board_width_cells > board_width) {
-		cell_widht = board_width / board_width_cells;
+		//cell_widht = board_width / board_width_cells;
+		cell_widht = min_cell_size;
 	} else {
 		cell_widht = expected_cell_width;
 	}
@@ -141,13 +144,14 @@ function checkForWin(cell, currentTurn) {
 			let indx_to_check = cell_index + i + board_width_cells * j;
 			try {
 				if (allCells[indx_to_check].classList.contains(currentTurn)) {
-					console.log(`cell ${indx_to_check} has ${currentTurn}`);
+					//console.log(`cell ${indx_to_check} has ${currentTurn}`);
 					if (checkForLine(indx_to_check, i, j, currentTurn)) {
 						console.log("tenemos linea");
+						return true;
 					}
 				}
 			} catch (e) {
-				console.log(e);
+				//console.log(e);
 			}
 		}
 	}
@@ -157,30 +161,35 @@ function checkForWin(cell, currentTurn) {
 function checkForLine(cell_index, i, j, currentTurn) {
 	var cell_count = [2];
 	var cell_index = [cell_index];
-	console.log(`cell index at beggining = ${cell_index}`);
-	if (checkForLineDiretion(cell_index, i, j, currentTurn, cell_count))
+	//console.log(`cell index at beggining = ${cell_index}`);
+	if (checkForLineDiretion(cell_index, i, j, currentTurn, cell_count)) {
+		//console.log("we found line right away");
 		return true;
-	console.log(`cell_count = ${cell_count}`)
-	console.log(cell_count);
-	console.log(cell_count - 1);
+	}
+	//console.log(`cell_count = ${cell_count}`);
+	//console.log(cell_count);
+	//console.log(cell_count - 1);
 	i = -i;
 	j = -j;
 	cell_index[0] += (cell_count - 1) * (i + j * board_width_cells);
-	console.log(`cell index at end = ${cell_index}`);
+	//console.log(`cell index at end = ${cell_index}`);
 	return checkForLineDiretion(cell_index, i, j, currentTurn, cell_count);
 }
 
 function checkForLineDiretion(cell_index, i, j, currentTurn, cell_count_array) {
-	while (allCells[cell_index[0] + i + j * board_width_cells].classList.contains(currentTurn)) {
+	//console.log("empezamos cfld");
+	while (allCells[cell_index[0] + i + j * board_width_cells] && allCells[cell_index[0] + i + j * board_width_cells].classList.contains(currentTurn)) {
+		//console.log(`estamos en cell_index ${cell_index}`);
 		cell_count_array[0]++;
 		if (cell_count_array[0] == line_lenght)
 			return true;
 		else {
-			console.log(`in cell ${cell_index}`);
-			console.log(`line_lenght is ${line_lenght} and cell_count_array[0] is ${cell_count_array}`);
+			//console.log(`in cell ${cell_index}`);
+			//console.log(`line_lenght is ${line_lenght} and cell_count_array[0] is ${cell_count_array}`);
 		}
 		cell_index[0] += i + j * board_width_cells;
 	}
+	//console.log("no line right away");
 	return false;
 }
 
