@@ -1,5 +1,5 @@
 * {
-    /*border: 1px solid gray;*/
+    /*border: 1px solid red;*/
     box-sizing: border-box;
 }
 
@@ -15,4 +15,46 @@ h1 {
     flex-direction: column;
     align-items: center;
     padding: 50px;
+}
+
+.end-message{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #0005;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  z-index: 1;
+  display: none;
+}
+
+.end-message.show-message{
+	display: flex;
+}
+.end-message div{
+  min-width: 50vw;
+  padding: 50px 30px;
+  background-color: #FFF3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.end-message p{
+	font-size: 6rem;
+	margin: 2rem auto;
+  margin-top: 0;
+}
+.end-message button{
+	font-size: 4rem;
+	background-color: #FFF;
+	padding: 10px;
+}
+
+.end-message>button:hover{
+	background-color: #DDF;
 }
